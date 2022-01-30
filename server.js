@@ -178,6 +178,7 @@ wsServer.on("connection", (ws, req) => {
   });
   ws.on("close", (msg) => {
     console.log("close");
+  
     console.log(clients, 'clientsExit');
     const userID = JSON.parse(msg);
     [...wsServer.clients]
@@ -185,7 +186,9 @@ wsServer.on("connection", (ws, req) => {
         return o.readyState === WS.OPEN;
       })
       .forEach((o) => o.send(JSON.stringify(clients)));
-    ws.close();
+   ws.close(1000,"disconnect");
+
+
   });
 });
 server.listen(PORT, () =>
