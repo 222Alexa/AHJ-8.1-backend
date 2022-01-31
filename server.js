@@ -137,7 +137,7 @@ wsServer.on("connection", (ws, req) => {
     .filter((o) => {
       return o.readyState === WS.OPEN;
     })
-    .forEach((o) => o.send(JSON.stringify({type: "connect", data: clients})));
+    .forEach((o) => o.send(JSON.stringify( clients)));
 
   ws.on("message", (msg) => {
 
