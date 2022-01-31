@@ -137,7 +137,7 @@ wsServer.on("connection", (ws, req) => {
     .filter((o) => {
       return o.readyState === WS.OPEN;
     })
-    .forEach((o) => o.send(JSON.stringify(clients)));
+    .forEach((o) => o.send(JSON.stringify({type: "connect", data: clients})));
 
   ws.on("message", (msg) => {
 
@@ -151,7 +151,7 @@ wsServer.on("connection", (ws, req) => {
         .forEach((o) => o.send(JSON.stringify(post)));
 
     if (post.type === "add") {
-  
+  console.log(post, 'addpost');
       [...wsServer.clients]
         .filter((o) => {
           return o.readyState === WS.OPEN;
